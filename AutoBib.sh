@@ -5,9 +5,8 @@ FILENAME="./Bibliography.bib"
 
 doi() {
 
-    pdftotext $1 temp.txt
+    pdftotext $1 temp.txt -q
     cat temp.txt | grep doi: | cut -d: -f 2 | head -n 1 >> dois.txt
-    echo "test"
     rm -rf temp.txt
 }
 bibmaker() {
@@ -20,7 +19,7 @@ bibmaker() {
 
 }
 
-#echo "`date` User `whoami` started the script."$'\n' >> output.log
+echo "`date` User `whoami` started the script."$'\n' 
 LSTPDF=$(ls $1)
 for i in $LSTPDF; do
     doi $1$i
